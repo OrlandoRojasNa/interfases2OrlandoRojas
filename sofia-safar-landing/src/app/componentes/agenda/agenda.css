@@ -1,0 +1,15 @@
+#agenda{
+  text-align:center;
+  background:#f9f5f4;
+}
+
+#agenda a{
+  display:inline-block;
+  margin-top:20px;
+  background:#25D366;
+  color:white;
+  padding:14px 28px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:500;
+}
