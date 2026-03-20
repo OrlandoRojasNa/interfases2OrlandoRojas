@@ -9,6 +9,7 @@ import { AgendaComponent } from './componentes/agenda/agenda';
 import { ContactoComponent } from './componentes/contacto/contacto';
 import { FooterComponent } from './componentes/footer/footer';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

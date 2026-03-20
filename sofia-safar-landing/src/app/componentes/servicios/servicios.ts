@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-servicios',
@@ -7,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrl: './servicios.css'
 })
 export class ServiciosComponent {
+
+  @ViewChild('slider') slider!: ElementRef;
+
+  scrollIzquierda(){
+    this.slider.nativeElement.scrollBy({
+      left: -300,
+      behavior: 'smooth'
+    });
+  }
+
+  scrollDerecha(){
+    this.slider.nativeElement.scrollBy({
+      left: 300,
+      behavior: 'smooth'
+    });
+  }
 
 }

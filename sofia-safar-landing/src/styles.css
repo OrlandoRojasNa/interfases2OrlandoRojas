@@ -14,3 +14,7 @@ color:#b76e79;
 html{
 scroll-behavior:smooth;
 }
+
+.slider{
+  scroll-behavior: smooth;
+}
