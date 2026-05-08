@@ -1,13 +1,13 @@
-import { Routes } from '@angular/router';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import { Login } from './componentes/login/login';
-import { LandingComponent } from './componentes/landing/landing';
-import { PerfilComponent } from './componentes/perfil/perfil';
-import { authGuard } from './guards/auth.guard';
+@Component({
+  selector: 'app-landing',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './landing.html',
+  styleUrl: './landing.css'
+})
+export class LandingComponent {
 
-export const routes: Routes = [
-  { path: '', component: LandingComponent },
-  { path: 'login', component: Login },
-  { path: 'perfil', component: PerfilComponent, canActivate: [authGuard] },
-  { path: '**', redirectTo: '' },
-];
+}
