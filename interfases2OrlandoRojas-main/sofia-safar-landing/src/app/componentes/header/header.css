@@ -1,0 +1,150 @@
+/* HEADER BASE */
+.header{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 40px;
+
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid transparent;
+
+  transition: all 0.3s ease;
+
+  animation: fadeIn 1s ease;
+}
+
+/* CUANDO HACE SCROLL */
+.header.scrolled{
+  background: white;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  border-bottom: 1px solid #eee;
+}
+
+/* LOGO */
+.logo{
+  font-size: 20px;
+  font-weight: 600;
+  color: #b76e79;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.logo span{
+  font-size: 12px;
+  color: #999;
+}
+
+/* MENÚ */
+.menu{
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.menu a{
+  text-decoration: none;
+  color: #b76e79;
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* HOVER PREMIUM */
+.menu a::after{
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #b76e79;
+  transition: 0.3s;
+}
+
+.menu a:hover::after{
+  width: 100%;
+}
+
+/* BOTÓN DESTACADO */
+.btn-agendar,
+.btn-link,
+.btn-logout{
+  background: #b76e79;
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 25px;
+  transition: 0.3s;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.btn-agendar:hover,
+.btn-link:hover,
+.btn-logout:hover{
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(183,110,121,0.4);
+}
+
+.btn-link{
+  display: inline-flex;
+  align-items: center;
+}
+
+.user-chip{
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(183, 110, 121, 0.12);
+  color: #8b6573;
+  font-weight: 700;
+}
+
+@media (max-width: 960px){
+  .header{
+    padding: 16px 20px;
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu{
+    width: 100%;
+  }
+}
+
+@media (max-width: 720px){
+  .menu{
+    gap: 12px;
+  }
+
+  .menu a,
+  .btn-agendar,
+  .btn-link,
+  .btn-logout,
+  .user-chip{
+    margin-left: 0;
+  }
+}
+
+/* ANIMACIÓN DE ENTRADA */
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform: translateY(-20px);
+  }
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
