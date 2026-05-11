@@ -1,0 +1,75 @@
+<header class="header" [class.scrolled]="scrolled">
+
+  <div class="logo">
+    Sofía Safar
+    <span>Cosmetología & Estética</span>
+  </div>
+
+  <nav class="menu">
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#sobre">Sobre mí</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#contacto">Contacto</a>
+
+    <button type="button" class="cart-trigger" (click)="toggleCart()">
+      Carrito
+      <span class="cart-badge" *ngIf="cartCount() > 0">{{ cartCount() }}</span>
+    </button>
+
+    <a routerLink="/login" class="btn-agendar">Agendar</a>
+
+    <div class="session-chip" *ngIf="currentUser() as user">
+      <div class="session-avatar" aria-hidden="true">{{ getInitials(user.name) }}</div>
+
+      <div class="session-copy">
+        <span class="session-label">Sesión activa</span>
+        <strong class="session-name" [title]="user.name">{{ user.name }}</strong>
+        <span class="session-email" [title]="user.email">{{ user.email }}</span>
+      </div>
+
+      <button type="button" class="session-action" (click)="logout()">Salir</button>
+    </div>
+  </nav>
+
+  <div class="cart-overlay" *ngIf="cartOpen" (click)="closeCart()"></div>
+
+  <aside class="cart-panel" [class.open]="cartOpen" aria-label="Carrito de compras">
+    <div class="cart-panel-header">
+      <div>
+        <p class="cart-eyebrow">Tu carrito</p>
+        <h3>Servicios seleccionados</h3>
+      </div>
+      <button type="button" class="cart-close" (click)="closeCart()">×</button>
+    </div>
+
+    <div class="cart-empty" *ngIf="cartItems().length === 0; else cartList">
+      Aún no has agregado servicios.
+    </div>
+
+    <ng-template #cartList>
+      <div class="cart-list">
+        <article class="cart-item" *ngFor="let item of cartItems(); trackBy: trackItemById">
+          <div>
+            <h4>{{ item.name }}</h4>
+            <p>{{ item.description }}</p>
+          </div>
+          <div class="cart-item-meta">
+            <span>Cantidad: {{ item.quantity }}</span>
+            <strong>{{ item.price * item.quantity | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
+            <button type="button" (click)="removeItem(item.id)">Quitar</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="cart-summary">
+        <div>
+          <span>Total</span>
+          <strong>{{ cartTotal() | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
+        </div>
+        <button type="button" class="clear-cart" (click)="clearCart()">Vaciar carrito</button>
+      </div>
+    </ng-template>
+  </aside>
+
+</header>

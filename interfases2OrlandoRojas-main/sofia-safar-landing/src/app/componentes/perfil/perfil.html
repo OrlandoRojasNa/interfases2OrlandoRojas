@@ -1,0 +1,38 @@
+<section class="profile-page">
+	<div class="profile-shell">
+		<div class="profile-card" *ngIf="currentUser$ | async as user">
+			<div class="profile-header">
+				<div class="avatar" aria-hidden="true">{{ getInitial(user.name) }}</div>
+				<div>
+					<p class="eyebrow">Perfil de usuario</p>
+					<h1>{{ user.name }}</h1>
+					<p class="subtitle">Tu cuenta está activa y lista para gestionar tu experiencia.</p>
+				</div>
+			</div>
+
+			<div class="profile-grid">
+				<div class="profile-field">
+					<span>ID</span>
+					<strong>{{ user.id }}</strong>
+				</div>
+				<div class="profile-field">
+					<span>Email</span>
+					<strong>{{ user.email }}</strong>
+				</div>
+				<div class="profile-field">
+					<span>Teléfono</span>
+					<strong>{{ user.phone }}</strong>
+				</div>
+				<div class="profile-field">
+					<span>Fecha de registro</span>
+					<strong>{{ formatDate(user.registeredAt) }}</strong>
+				</div>
+			</div>
+
+			<div class="profile-actions">
+				<a routerLink="/" class="secondary-btn">Volver al Landing</a>
+				<button type="button" class="primary-btn" (click)="logout()">Cerrar Sesión</button>
+			</div>
+		</div>
+	</div>
+</section>

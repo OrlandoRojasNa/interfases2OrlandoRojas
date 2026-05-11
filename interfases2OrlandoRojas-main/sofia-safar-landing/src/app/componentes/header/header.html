@@ -1,0 +1,26 @@
+<header class="header" [class.scrolled]="scrolled">
+
+  <a routerLink="/" class="logo" aria-label="Volver al inicio">
+    Sofía Safar
+    <span>Cosmetología & Estética</span>
+  </a>
+
+  <nav class="menu">
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#sobre">Sobre mí</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#contacto">Contacto</a>
+
+    <ng-container *ngIf="currentUser$ | async as user; else guestActions">
+      <span class="user-chip">{{ user.name }}</span>
+      <a routerLink="/perfil" class="btn-link">Ir al Perfil</a>
+      <button type="button" class="btn-agendar btn-logout" (click)="logout()">Cerrar Sesión</button>
+    </ng-container>
+
+    <ng-template #guestActions>
+      <a routerLink="/login" class="btn-agendar">Ingresar</a>
+    </ng-template>
+  </nav>
+
+</header>

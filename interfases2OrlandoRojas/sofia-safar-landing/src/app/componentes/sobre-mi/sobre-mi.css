@@ -1,0 +1,104 @@
+/* SECCIÓN */
+.sobre{
+  padding: 100px 40px;
+  background: #f9f5f4;
+}
+
+/* CONTENEDOR */
+.contenedor{
+  max-width: 1200px;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+/* IMAGEN */
+.imagen{
+  flex: 1;
+  min-width: 280px;
+}
+
+.imagen img{
+  width: 100%;
+  border-radius: 20px;
+  display: block;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* TEXTO */
+.contenido{
+  flex: 1;
+  min-width: 280px;
+}
+
+/* TITULOS */
+.contenido h2{
+  color: #b76e79;
+  margin-bottom: 10px;
+}
+
+.contenido h3{
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+
+/* TEXTO */
+.descripcion{
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.contenido p{
+  color: #555;
+  line-height: 1.6;
+}
+
+/* VALORES */
+.valores{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.valores span{
+  background: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  width: fit-content;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* 🔥 ANIMACIONES (SIN AOS) */
+.animar{
+  opacity: 0;
+  transform: translateY(40px);
+  animation: aparecer 1s ease forwards;
+}
+
+.delay{
+  animation-delay: 0.3s;
+}
+
+@keyframes aparecer{
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px){
+  .contenedor{
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .valores{
+    align-items: center;
+  }
+}
