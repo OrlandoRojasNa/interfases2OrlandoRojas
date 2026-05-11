@@ -1,48 +1,36 @@
-const express = require('express');
-const mysql = require('mysql2');
-const cors = require('cors');
-
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-// Conexión a la base de datos (Docker usa el nombre del servicio 'db')
-const db = mysql.createPool({
-    host: 'db',
-    user: 'root',
-    password: 'root_password',
-    database: 'agenda_db',
-    waitForConnections: true,
-    connectionLimit: 10
-});
-
-// --- RUTA 1: E-COMMERCE (Listar Productos) ---
-app.get('/api/productos', (req, res) => {
-    db.query('SELECT * FROM productos', (err, results) => {
-        if (err) return res.status(500).send(err);
-        res.json(results);
-    });
-});
-
-// --- RUTA 2: ESPECIALISTAS (Listar para la Agenda) ---
-app.get('/api/especialistas', (req, res) => {
-    db.query('SELECT * FROM especialistas', (err, results) => {
-        if (err) return res.status(500).send(err);
-        res.json(results);
-    });
-});
-
-// --- RUTA 3: AGENDAR CITA (El enlace Frontend-Backend-DB) ---
+// --- NUEVA RUTA PARA AGENDAR CITAS RELACIONALES ---
 app.post('/api/agendar', (req, res) => {
-    const { usuario_nombre, especialista_id, fecha_cita } = req.body;
-    const sql = "INSERT INTO citas (usuario_nombre, especialista_id, fecha_cita) VALUES (?, ?, ?)";
+    // Ahora recibimos cliente_id en lugar de un nombre de texto
+    const { cliente_id, especialista_id, fecha_cita } = req.body;
     
-    db.query(sql, [usuario_nombre, especialista_id, fecha_cita], (err, result) => {
-        if (err) return res.status(500).send(err);
-        res.json({ message: 'Cita agendada con éxito', id: result.insertId });
+    const sql = "INSERT INTO citas (cliente_id, especialista_id, fecha_cita) VALUES (?, ?, ?)";
+    
+    db.query(sql, [cliente_id, especialista_id, fecha_cita], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send("Error al agendar la cita");
+        }
+        res.json({ message: 'Cita vinculada al cliente con éxito', id: result.insertId });
     });
 });
 
-app.listen(3000, () => {
-    console.log('API de Sofia Safar corriendo en http://localhost:3000');
+// --- NUEVA RUTA PARA REGISTRAR COMPRAS (EL CARRITO) ---
+app.post('/api/comprar', (req, res) => {
+    const { cliente_id, total, productos } = req.body; // productos es un array
+
+    // 1. Crear la cabecera de la compra
+    db.query('INSERT INTO compras (cliente_id, total) VALUES (?, ?)', [cliente_id, total], (err, result) => {
+        if (err) return res.status(500).send(err);
+        
+        const compraId = result.insertId;
+        
+        // 2. Insertar cada producto en detalle_compra
+        const detalles = productos.map(p => [compraId, p.id, p.cantidad, p.precio]);
+        const sqlDetalle = "INSERT INTO detalle_compra (compra_id, producto_id, cantidad, precio_unitario) VALUES ?";
+        
+        db.query(sqlDetalle, [detalles], (errDetalle) => {
+            if (errDetalle) return res.status(500).send(errDetalle);
+            res.json({ message: 'Compra y detalles registrados exitosamente' });
+        });
+    });
 });
