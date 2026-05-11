@@ -19,15 +19,17 @@ services:
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: pma_agenda
-    links:
-      - db
+    restart: always
     ports:
       - "8081:80"
     environment:
       PMA_HOST: db
       PMA_ARBITRARY: 1
+      MYSQL_ROOT_PASSWORD: root_password # Agregamos esto para facilitar el acceso
+    depends_on:
+      - db
 
-  # Backend (Node.js) - Se construirá después
+  # Backend (Node.js)
   api:
     build: ./backend
     container_name: node_api
@@ -46,7 +48,7 @@ services:
     build: ./sofia-safar-landing
     container_name: angular_frontend
     ports:
-      - "4200:80"
+      - "4200:4200" # Cambiado a 4200:4200 si usas el servidor de desarrollo de Angular
     depends_on:
       - api
 
