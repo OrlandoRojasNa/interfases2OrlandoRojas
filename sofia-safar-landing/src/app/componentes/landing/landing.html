@@ -1,1 +1,18 @@
-<p>landing works!</p>
+<div class="container mt-5">
+    <h2>Agendar Cita - Sofia Safar</h2>
+    <p>Selecciona un profesional para tu atención:</p>
+
+    <div class="form-group col-md-6">
+        <label for="especialista">Especialista disponible:</label>
+        <select class="form-control" id="especialista">
+            <option value="" disabled selected>-- Seleccione un profesional --</option>
+            <option *ngFor="let esp of listaEspecialistas" [value]="esp.id">
+                {{ esp.nombre_completo }} - {{ esp.especialidad }}
+            </option>
+        </select>
+    </div>
+
+    <div *ngIf="listaEspecialistas.length === 0" class="alert alert-warning mt-3">
+        Conectando con el servidor de especialistas...
+    </div>
+</div>

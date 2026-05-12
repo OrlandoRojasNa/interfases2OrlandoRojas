@@ -1,7 +1,10 @@
 import { Routes } from '@angular/router';
-import { LandingComponent } from './landing/landing.component';
+// Ajusta la ruta a tu carpeta real:
+import { Landing } from './componentes/landing/landing';
+import { LoginComponent } from './componentes/login/login';
 
 export const routes: Routes = [
-  { path: '', component: LandingComponent },
-  // Agrega aquí más rutas si las tienes
+  { path: '', component: Landing },
+  { path: 'login', component: LoginComponent },
+  // ... otras rutas
 ];
