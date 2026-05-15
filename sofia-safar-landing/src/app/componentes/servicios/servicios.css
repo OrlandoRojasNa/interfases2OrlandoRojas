@@ -1,5 +1,5 @@
 .servicios{
-  padding: 100px 40px;
+  padding: clamp(40px, 8vw, 100px) clamp(16px, 5vw, 40px);
   background: #fff;
 }
 
@@ -10,22 +10,26 @@
 }
 
 .servicios h2{
-  font-size: 32px;
+  font-size: clamp(24px, 5vw, 32px);
   color: #b76e79;
+  margin-bottom: clamp(12px, 2vw, 20px);
 }
 
 .subtitulo{
-  margin-bottom: 40px;
+  margin-bottom: clamp(24px, 4vw, 40px);
   color: #777;
+  font-size: clamp(14px, 2vw, 16px);
 }
 
 /* SLIDER */
 .slider{
   display: flex;
-  gap: 25px;
+  gap: clamp(16px, 3vw, 25px);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 20px;
+  padding-bottom: clamp(12px, 2vw, 20px);
+  padding-left: clamp(8px, 2vw, 16px);
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ocultar scrollbar */
@@ -35,7 +39,7 @@
 
 /* TARJETAS */
 .card{
-  min-width: 280px;
+  min-width: clamp(220px, 80vw, 280px);
   flex: 0 0 auto;
 
   background: #f9f5f4;
@@ -57,18 +61,41 @@
 /* IMAGEN */
 .card img{
   width: 100%;
-  height: 180px;
+  height: clamp(120px, 20vw, 180px);
   object-fit: cover;
 }
 
 /* CONTENIDO */
 .card h3{
   color: #b76e79;
-  margin: 15px;
+  margin: clamp(12px, 2vw, 15px);
+  font-size: clamp(14px, 2.5vw, 18px);
 }
 
 .card p{
   color: #555;
-  font-size: 14px;
-  margin: 0 15px 20px;
+  font-size: clamp(12px, 1.8vw, 14px);
+  margin: 0 clamp(10px, 2vw, 15px) clamp(12px, 2vw, 20px);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .slider {
+    gap: 12px;
+    padding-bottom: 16px;
+  }
+  
+  .card {
+    min-width: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider {
+    gap: 10px;
+  }
+  
+  .card {
+    min-width: 200px;
+  }
 }
