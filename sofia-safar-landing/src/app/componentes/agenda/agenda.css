@@ -1,19 +1,19 @@
 .agenda {
   background: #f9f5f4;
-  padding: 60px 20px;
+  padding: clamp(30px, 6vw, 60px) clamp(12px, 3vw, 20px);
   display: flex;
   justify-content: center;
 }
 
 .agenda-card {
   background: #ffffff;
-  border-radius: 24px;
-  padding: 28px;
+  border-radius: clamp(16px, 3vw, 24px);
+  padding: clamp(20px, 4vw, 28px);
   max-width: 900px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 24px;
+  gap: clamp(16px, 3vw, 24px);
   align-items: center;
   box-shadow: 0 18px 40px rgba(139, 101, 115, 0.15);
   border: 1px solid rgba(166, 124, 132, 0.15);
@@ -21,36 +21,36 @@
 
 .agenda-image img {
   width: 100%;
-  border-radius: 18px;
+  border-radius: clamp(12px, 2.5vw, 18px);
   object-fit: cover;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 .agenda-content h2 {
-  margin: 0 0 12px;
+  margin: 0 0 clamp(8px, 1.5vw, 12px);
   color: #8b6573;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
 }
 
 .agenda-content p {
-  margin: 0 0 24px;
+  margin: 0 0 clamp(16px, 3vw, 24px);
   color: #5e4d52;
   line-height: 1.6;
-  font-size: 1rem;
+  font-size: clamp(14px, 2vw, 16px);
 }
 
 .agenda-btn {
   display: inline-flex !important;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  justiclamp(6px, 1.5vw, 8px);
   background: #25D366 !important;
   color: #fff !important;
-  padding: 16px 32px !important;
+  padding: clamp(12px, 2vw, 16px) clamp(20px, 4vw, 32px) !important;
   border-radius: 999px !important;
   border: none !important;
   font-weight: 700 !important;
-  font-size: 1rem !important;
+  font-size: clamp(12px, 1.5vw, 16px) !important;
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3) !important;
   transition: all 0.3s ease !important;
   text-decoration: none !important;
@@ -74,6 +74,18 @@
   }
 
   .agenda-image img {
+    max-height: clamp(160px, 40vw, 240px);
+  }
+}
+
+@media (max-width: 480px) {
+  .agenda {
+    padding: 30px 12px;
+  }
+  
+  .agenda-card {
+    padding: 16px;
+    gap: 16 {
     max-height: 240px;
   }
 }

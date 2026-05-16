@@ -1,11 +1,13 @@
 /* HERO GENERAL */
 .hero{
   position: relative;
-  height: 90vh;
+  height: clamp(60vh, 90vh, 100vh);
+  min-height: 500px;
 
   background-image: url("https://images.unsplash.com/photo-1570172619644-dfd03ed5d881");
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
 
   display: flex;
   align-items: center;
@@ -30,42 +32,48 @@
   position: relative;
   text-align: center;
   max-width: 800px;
-  padding: 20px;
+  padding: clamp(16px, 5vw, 40px);
+  width: 100%;
 
   animation: fadeUp 1s ease;
 }
 
 /* TÍTULO */
 .contenido h1{
-  font-size: 42px;
+  font-size: clamp(28px, 6vw, 48px);
   color: #b76e79;
-  margin-bottom: 20px;
+  margin-bottom: clamp(12px, 3vw, 30px);
   line-height: 1.2;
+  font-weight: 700;
 }
 
 /* DESCRIPCIÓN */
 .contenido p{
-  font-size: 18px;
+  font-size: clamp(14px, 2.5vw, 18px);
   color: #555;
-  margin-bottom: 30px;
+  margin-bottom: clamp(18px, 4vw, 30px);
+  line-height: 1.6;
 }
 
 /* BOTONES */
 .botones{
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: clamp(12px, 3vw, 20px);
+  margin-top: clamp(12px, 2vw, 20px);
 }
 
 /* BOTÓN PRINCIPAL */
 .btn-primary{
   background: #b76e79;
   color: white;
-  padding: 14px 30px;
+  padding: clamp(10px, 2vw, 14px) clamp(20px, 4vw, 32px);
   border-radius: 30px;
   text-decoration: none;
   font-weight: 500;
   transition: 0.3s;
+  font-size: clamp(12px, 1.5vw, 16px);
 }
 
 .btn-primary:hover{
@@ -73,19 +81,40 @@
   box-shadow: 0 5px 20px rgba(183,110,121,0.4);
 }
 
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
 /* BOTÓN SECUNDARIO */
 .btn-outline{
   border: 2px solid #b76e79;
   color: #b76e79;
-  padding: 12px 28px;
+  padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 28px);
   border-radius: 30px;
   text-decoration: none;
   transition: 0.3s;
+  font-size: clamp(12px, 1.5vw, 16px);
 }
 
 .btn-outline:hover{
   background: #b76e79;
   color: white;
+}
+
+.btn-outline:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .botones {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .btn-primary, .btn-outline {
+    width: 100%;
+    max-width: 280px;
+  }
 }
 
 /* ANIMACIÓN */
