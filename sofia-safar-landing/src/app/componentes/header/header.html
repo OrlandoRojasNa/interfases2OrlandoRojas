@@ -16,88 +16,84 @@
       <a *ngIf="!authState.isAuthenticated; else authenticatedMenu" class="btn-primary ingresar-btn" [routerLink]="['/login']">Ingresar</a>
 
       <ng-template #authenticatedMenu>
-        <div class="auth-actions">
-          <div class="cart-menu" [class.open]="cartOpen" (mouseenter)="cartOpen = true" (mouseleave)="cartOpen = false">
-            <button
-              type="button"
-              class="cart-btn"
-              aria-label="Abrir carrito de compras"
-              [attr.aria-expanded]="cartOpen"
-              (click)="toggleCart($event)"
-            >
-              <span class="cart-icon">🛒</span>
-              <span *ngIf="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
-            </button>
-
-            <div class="cart-dropdown" role="menu">
-              <div class="cart-header">
-                <div>
-                  <span class="cart-title">Carrito de servicios</span>
-                  <span class="cart-subtitle">Precios en pesos colombianos</span>
-                </div>
-                <button type="button" class="cart-clear" (click)="clearCart($event)" [disabled]="!cartItems.length">Vaciar</button>
-              </div>
-
-              <div class="cart-services">
-                <p class="cart-section-title">Servicios disponibles</p>
-                <button type="button" class="cart-service" *ngFor="let service of availableServices" (click)="addServiceToCart(service)">
-                  <span class="cart-service-name">{{ service.name }}</span>
-                  <span class="cart-service-price">{{ formatCop(service.price) }}</span>
-                </button>
-              </div>
-
-              <div class="cart-items" *ngIf="cartItems.length; else emptyCart">
-                <p class="cart-section-title">Tu carrito</p>
-                <div class="cart-item" *ngFor="let item of cartItems">
+          <div class="auth-actions">
+            <!-- CARRITO -->
+            <div class="cart-menu"
+                 [class.open]="cartOpen"
+                 (mouseenter)="cartOpen = true" (mouseleave)="cartOpen = false">
+              <button type="button"
+                      class="cart-btn"
+                      aria-label="Abrir carrito de compras"
+                      [attr.aria-expanded]="cartOpen"
+                      (click)="toggleCart($event)">
+                <span class="cart-icon">🛒</span>
+                <span *ngIf="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
+              </button>
+              <div class="cart-dropdown" role="menu">
+                <!-- ... carrito restante igual que tu snippet ... -->
+                <div class="cart-header">
                   <div>
-                    <span class="cart-item-name">{{ item.service.name }}</span>
-                    <span class="cart-item-meta">{{ item.quantity }} x {{ formatCop(item.service.price) }}</span>
+                    <span class="cart-title">Carrito de servicios</span>
+                    <span class="cart-subtitle">Precios en pesos colombianos</span>
                   </div>
-                  <div class="cart-item-actions">
-                    <span class="cart-item-total">{{ formatCop(item.service.price * item.quantity) }}</span>
-                    <button type="button" class="cart-remove" (click)="removeServiceFromCart(item.service.id)">-</button>
+                  <button type="button" class="cart-clear" (click)="clearCart($event)" [disabled]="!cartItems.length">Vaciar</button>
+                </div>
+                <div class="cart-services">
+                  <p class="cart-section-title">Servicios disponibles</p>
+                  <button type="button" class="cart-service" *ngFor="let service of availableServices" (click)="addServiceToCart(service)">
+                    <span class="cart-service-name">{{ service.name }}</span>
+                    <span class="cart-service-price">{{ formatCop(service.price) }}</span>
+                  </button>
+                </div>
+                <div class="cart-items" *ngIf="cartItems.length; else emptyCart">
+                  <p class="cart-section-title">Tu carrito</p>
+                  <div class="cart-item" *ngFor="let item of cartItems">
+                    <div>
+                      <span class="cart-item-name">{{ item.service.name }}</span>
+                      <span class="cart-item-meta">{{ item.quantity }} x {{ formatCop(item.service.price) }}</span>
+                    </div>
+                    <div class="cart-item-actions">
+                      <span class="cart-item-total">{{ formatCop(item.service.price * item.quantity) }}</span>
+                      <button type="button" class="cart-remove" (click)="removeServiceFromCart(item.service.id)">-</button>
+                    </div>
                   </div>
+                  <div class="cart-total">
+                    <span>Total</span>
+                    <strong>{{ formatCop(cartTotal) }}</strong>
+                  </div>
+                  <a class="btn-primary cart-checkout" [href]="getWhatsAppCheckoutUrl()" target="_blank" rel="noopener">Comprar por WhatsApp</a>
                 </div>
-
-                <div class="cart-total">
-                  <span>Total</span>
-                  <strong>{{ formatCop(cartTotal) }}</strong>
-                </div>
-
-                <a class="btn-primary cart-checkout" [href]="getWhatsAppCheckoutUrl()" target="_blank" rel="noopener">Comprar por WhatsApp</a>
+                <ng-template #emptyCart>
+                  <p class="cart-empty">Agrega servicios para ver tu compra aquí.</p>
+                </ng-template>
               </div>
-
-              <ng-template #emptyCart>
-                <p class="cart-empty">Agrega servicios para ver tu compra aquí.</p>
-              </ng-template>
+            </div>
+            <!-- USUARIO -->
+            <div class="user-menu"
+                 [class.open]="userMenuOpen"
+                 (mouseenter)="userMenuOpen = true"
+                 (mouseleave)="userMenuOpen = false">
+              <button type="button"
+                      class="avatar-btn"
+                      aria-label="Abrir menú de usuario"
+                      [attr.aria-expanded]="userMenuOpen"
+                      (click)="toggleUserMenu($event)"
+                      (keydown)="onAvatarKeydown($event)">
+                <span class="avatar-circle">
+                  {{ authState.user?.displayName?.charAt(0) || 'S' }}
+                </span>
+              </button>
+              <div class="user-dropdown" role="menu">
+                <div class="user-info">
+                  <span class="user-name">{{ authState.user?.displayName }}</span>
+                  <span class="user-email">{{ authState.user?.email }}</span>
+                </div>
+                <button type="button" class="logout-btn" role="menuitem" (click)="logout($event)">Cerrar sesión</button>
+              </div>
             </div>
           </div>
-
-          <div class="user-menu" [class.open]="userMenuOpen" (mouseenter)="userMenuOpen = true" (mouseleave)="userMenuOpen = false">
-          <button
-            type="button"
-            class="avatar-btn"
-            aria-label="Abrir menú de usuario"
-            [attr.aria-expanded]="userMenuOpen"
-            (click)="toggleUserMenu($event)"
-            (keydown)="onAvatarKeydown($event)"
-          >
-            <span class="avatar-circle">
-              {{ authState.user?.displayName?.charAt(0) || 'S' }}
-            </span>
-          </button>
-
-          <div class="user-dropdown" role="menu">
-            <div class="user-info">
-              <span class="user-name">{{ authState.user?.displayName }}</span>
-              <span class="user-email">{{ authState.user?.email }}</span>
-            </div>
-            <button type="button" class="logout-btn" role="menuitem" (click)="logout($event)">Cerrar sesión</button>
-          </div>
-        </div>
-        </div>
-      </ng-template>
-    </ng-container>
-  </nav>
+        </ng-template>
+      </ng-container>
+    </nav>
 
 </header>

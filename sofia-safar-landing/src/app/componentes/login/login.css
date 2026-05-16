@@ -1,7 +1,7 @@
 
 .auth-page {
 	min-height: 100vh;
-	padding: 32px 20px;
+	padding: clamp(16px, 3vw, 32px) clamp(12px, 2.5vw, 20px);
 	background:
 		radial-gradient(circle at top, rgba(166, 124, 132, 0.18), transparent 36%),
 		linear-gradient(180deg, #fff7f8 0%, #ffffff 46%, #f7f4f5 100%);
@@ -11,30 +11,31 @@
 	width: min(100%, 1100px);
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
-	gap: 28px;
+	grid-template-columns: minmax(0, 1fr) minmax(clamp(260px, 50vw, 460px), 1fr);
+	gap: clamp(16px, 3vw, 28px);
 	align-items: center;
 	min-height: calc(100vh - 64px);
 }
 
 .eyebrow {
-	margin: 0 0 12px;
+	margin: 0 0 clamp(8px, 1.5vw, 12px);
 	color: #a67c84;
 	text-transform: uppercase;
 	letter-spacing: 0.18em;
-	font-size: 0.78rem;
+	font-size: clamp(0.65rem, 1.2vw, 0.78rem);
 	font-weight: 700;
 }
 
 h1 {
-	margin: 0 0 12px;
-	font-size: clamp(2.2rem, 5vw, 3.6rem);
+	margin: 0 0 clamp(8px, 1.5vw, 12px);
+	font-size: clamp(2rem, 5vw, 3.6rem);
 	color: #2d2225;
 	line-height: 1.05;
+	font-weight: 700;
 }
 
 .auth-copy {
-	padding: 24px 12px;
+	padding: clamp(16px, 2vw, 24px) clamp(8px, 1.5vw, 12px);
 	max-width: 640px;
 	color: #5e4d52;
 }
@@ -42,34 +43,36 @@ h1 {
 .auth-copy p:last-child {
 	margin: 0;
 	line-height: 1.8;
-	font-size: 1.03rem;
+	font-size: clamp(0.9rem, 1.8vw, 1.03rem);
 }
 
 .auth-card {
-	padding: 28px;
-	border-radius: 30px;
+	padding: clamp(18px, 3vw, 28px);
+	border-radius: clamp(20px, 4vw, 30px);
 	background: rgba(255, 255, 255, 0.9);
 	border: 1px solid rgba(166, 124, 132, 0.16);
 	box-shadow: 0 24px 60px rgba(68, 38, 44, 0.12);
 	backdrop-filter: blur(12px);
+	width: 100%;
 }
 
 .toggle-group {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 10px;
-	margin-bottom: 22px;
+	gap: clamp(8px, 1.5vw, 10px);
+	margin-bottom: clamp(16px, 2vw, 22px);
 }
 
 .toggle-btn {
 	border: 1px solid rgba(166, 124, 132, 0.18);
-	border-radius: 18px;
-	padding: 13px 16px;
+	border-radius: clamp(14px, 2.5vw, 18px);
+	padding: clamp(10px, 1.5vw, 13px) clamp(12px, 2vw, 16px);
 	background: #fff;
 	color: #8b6573;
 	font-weight: 700;
 	cursor: pointer;
 	transition: all 0.2s ease;
+	font-size: clamp(12px, 1.5vw, 14px);
 }
 
 .toggle-btn.active {
@@ -80,26 +83,28 @@ h1 {
 
 .auth-form {
 	display: grid;
-	gap: 14px;
+	gap: clamp(10px, 1.5vw, 14px);
 }
 
 .auth-form label {
 	display: grid;
-	gap: 8px;
+	gap: clamp(6px, 1.2vw, 8px);
 	color: #3d2f32;
 	font-weight: 600;
+	font-size: clamp(12px, 1.5vw, 14px);
 }
 
 .auth-form input {
 	width: 100%;
 	border: 1px solid #e2ccd0;
-	border-radius: 16px;
-	padding: 14px 16px;
+	border-radius: clamp(12px, 2vw, 16px);
+	padding: clamp(10px, 1.5vw, 14px) clamp(12px, 1.5vw, 16px);
 	background: #fff;
 	color: #2f2225;
 	outline: none;
 	transition: border-color 0.2s ease, box-shadow 0.2s ease;
 	box-sizing: border-box;
+	font-size: clamp(12px, 1.5vw, 16px);
 }
 
 .auth-form input:focus {
@@ -110,17 +115,26 @@ h1 {
 .primary-btn {
 	border: 0;
 	border-radius: 999px;
-	padding: 14px 20px;
+	padding: clamp(10px, 1.5vw, 14px) clamp(16px, 2.5vw, 20px);
 	background: linear-gradient(135deg, #a67c84, #8b6573);
 	color: #fff;
 	font-weight: 700;
 	cursor: pointer;
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 	box-shadow: 0 18px 28px rgba(139, 101, 115, 0.22);
+	font-size: clamp(12px, 1.5vw, 14px);
+	width: 100%;
+	max-width: 300px;
+	display: block;
+	margin: clamp(8px, 1.5vw, 14px) auto 0;
 }
 
 .primary-btn:hover {
 	transform: translateY(-1px);
+}
+
+.primary-btn:active {
+	transform: translateY(0);
 }
 
 .back-link {
@@ -128,6 +142,7 @@ h1 {
 	color: #8c5a63;
 	text-decoration: none;
 	font-weight: 600;
+	font-size: clamp(12px, 1.5vw, 14px);
 }
 
 .back-link:hover {
@@ -137,7 +152,7 @@ h1 {
 .field-error,
 .message {
 	margin: 0;
-	font-size: 0.92rem;
+	font-size: clamp(0.8rem, 1.2vw, 0.92rem);
 	line-height: 1.4;
 }
 
@@ -151,30 +166,65 @@ h1 {
 	background: rgba(31, 122, 79, 0.08);
 	border: 1px solid rgba(31, 122, 79, 0.16);
 	border-radius: 14px;
-	padding: 12px 14px;
+	padding: clamp(8px, 1.5vw, 12px) clamp(10px, 1.5vw, 14px);
+}
+
+@media (max-width: 900px) {
+	.auth-shell {
+		grid-template-columns: 1fr;
+		min-height: auto;
+	}
+	
+	.auth-copy {
+		order: 2;
+		padding: 16px 0;
+	}
+	
+	.auth-card {
+		order: 1;
+	}
 }
 
 @media (max-width: 640px) {
 	.auth-page {
-		padding: 20px 14px;
+		padding: clamp(12px, 2vw, 20px) clamp(10px, 2vw, 14px);
 	}
 
 	.auth-shell {
 		grid-template-columns: 1fr;
 		min-height: auto;
-		padding-top: 12px;
+		padding-top: 8px;
+		gap: 16px;
 	}
 
 	.auth-copy {
-		padding: 8px 2px 0;
+		padding: clamp(8px, 1.5vw, 16px) 0;
+		order: 2;
 	}
 
 	.auth-card {
-		padding: 22px 18px;
-		border-radius: 24px;
+		padding: clamp(16px, 2vw, 22px) clamp(14px, 2vw, 18px);
+		border-radius: clamp(16px, 3vw, 24px);
+		order: 1;
 	}
 
 	.toggle-group {
 		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 480px) {
+	.auth-page {
+		padding: 12px;
+		min-height: 100vh;
+	}
+
+	.auth-shell {
+		gap: 12px;
+		min-height: calc(100vh - 24px);
+	}
+
+	.auth-card {
+		padding: 14px 12px;
 	}
 }

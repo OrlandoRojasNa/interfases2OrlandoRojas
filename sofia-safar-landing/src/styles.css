@@ -1,20 +1,124 @@
 @import 'aos/dist/aos.css';
 
-
+* {
+  box-sizing: border-box;
+}
 
 body{
-font-family: Arial, Helvetica, sans-serif;
-background:white;
+  font-family: Arial, Helvetica, sans-serif;
+  background: white;
+  margin: 0;
+  padding: 0;
+  font-size: clamp(14px, 1.5vw, 16px);
 }
 
-h1,h2{
-color:#b76e79;
+h1, h2 {
+  color: #b76e79;
+  margin-top: 0;
 }
 
-html{
-scroll-behavior:smooth;
+h1 {
+  font-size: clamp(24px, 5vw, 42px);
 }
 
-.slider{
+h2 {
+  font-size: clamp(20px, 4vw, 32px);
+}
+
+h3 {
+  font-size: clamp(16px, 3vw, 24px);
+}
+
+h4 {
+  font-size: clamp(14px, 2.5vw, 18px);
+}
+
+html {
   scroll-behavior: smooth;
+}
+
+.slider {
+  scroll-behavior: smooth;
+}
+
+/* Base responsive container */
+.container, .contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(12px, 3vw, 20px);
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive buttons */
+button, a.btn, .btn {
+  font-size: clamp(12px, 1.5vw, 16px);
+  padding: clamp(8px, 1.5vw, 12px) clamp(16px, 3vw, 24px);
+}
+
+/* Responsive text */
+p {
+  line-height: 1.6;
+  font-size: clamp(13px, 2vw, 16px);
+}
+
+/* Responsive sections */
+section {
+  padding: clamp(30px, 6vw, 80px) clamp(12px, 3vw, 40px);
+}
+
+/* Mobile-first breakpoints */
+@media (max-width: 1024px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: clamp(20px, 5vw, 36px);
+  }
+  
+  h2 {
+    font-size: clamp(18px, 4vw, 28px);
+  }
+  
+  h3 {
+    font-size: clamp(14px, 3vw, 20px);
+  }
+  
+  section {
+    padding: clamp(20px, 4vw, 50px) clamp(12px, 2vw, 24px);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+  
+  h1 {
+    font-size: clamp(18px, 4vw, 28px);
+  }
+  
+  h2 {
+    font-size: clamp(16px, 3.5vw, 22px);
+  }
+  
+  h3 {
+    font-size: clamp(13px, 2.5vw, 18px);
+  }
+  
+  section {
+    padding: clamp(16px, 3vw, 32px) clamp(12px, 2vw, 16px);
+  }
 }
