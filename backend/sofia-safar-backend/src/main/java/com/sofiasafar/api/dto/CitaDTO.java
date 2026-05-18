@@ -9,19 +9,17 @@ import java.time.LocalDateTime;
 @Data
 public class CitaDTO {
     private Long id;
-
-    @NotBlank(message = "El nombre del cliente es obligatorio")
+    @NotBlank(message = "El nombre es obligatorio")
     private String clienteNombre;
-
-    @NotBlank(message = "El correo electrónico es obligatorio")
-    @Email(message = "El formato del correo no es válido")
+    @NotBlank(message = "El email es obligatorio")
+    @Email
     private String clienteEmail;
-
-    @NotBlank(message = "El servicio solicitado es obligatorio")
+    @NotBlank(message = "El servicio es obligatorio")
     private String servicio;
-
-    @NotNull(message = "La fecha y hora de la cita son obligatorias")
+    @NotBlank(message = "El tipo de servicio (FACIAL/CORPORAL) es obligatorio")
+    private String tipoServicio;
+    @NotNull(message = "La fecha es obligatoria")
     private LocalDateTime fechaHora;
-
     private String estado;
+    private String especialistaAsignado;
 }

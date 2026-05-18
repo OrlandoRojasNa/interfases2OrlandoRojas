@@ -13,6 +13,8 @@ public class Cita {
     private String clienteNombre;
     private String clienteEmail;
     private String servicio;
+    private String tipoServicio; // "FACIAL" o "CORPORAL"
     private LocalDateTime fechaHora;
-    private String estado; // "PENDIENTE", "CONFIRMADA", "CANCELADA"
+    private String estado;
+    private String especialistaAsignado; // Almacena el nombre del especialista que lo atenderá
 }

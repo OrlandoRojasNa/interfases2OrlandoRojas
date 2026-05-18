@@ -15,9 +15,11 @@ public class CitaRepository {
     private final AtomicLong idGenerator = new AtomicLong(1);
 
     public CitaRepository() {
-        // Citas quemadas de prueba para tener datos al arrancar
-        dataBaseSimulada.add(new Cita(idGenerator.getAndIncrement(), "Laura Restrepo", "laura@mail.com", "Limpieza Facial", LocalDateTime.now().plusDays(1), "PENDIENTE"));
-        dataBaseSimulada.add(new Cita(idGenerator.getAndIncrement(), "Carlos Mendoza", "carlos@mail.com", "Masaje Relajante", LocalDateTime.now().plusDays(2), "CONFIRMADA"));
+        // Inicialización adaptada con los nuevos campos de tipo y especialista asignado
+        Cita cita1 = new Cita(idGenerator.getAndIncrement(), "Laura Restrepo", "laura@mail.com", "Limpieza Facial Profunda", "FACIAL", LocalDateTime.now().plusDays(1), "PENDIENTE", "Dr. Camilo Ruiz");
+        Cita cita2 = new Cita(idGenerator.getAndIncrement(), "Carlos Mendoza", "carlos@mail.com", "Masaje Reductor Corporal", "CORPORAL", LocalDateTime.now().plusDays(2), "CONFIRMADA", "Dra. Elena Gómez");
+        dataBaseSimulada.add(cita1);
+        dataBaseSimulada.add(cita2);
     }
 
     public List<Cita> findAll() {
@@ -38,8 +40,10 @@ public class CitaRepository {
                 c.setClienteNombre(cita.getClienteNombre());
                 c.setClienteEmail(cita.getClienteEmail());
                 c.setServicio(cita.getServicio());
+                c.setTipoServicio(cita.getTipoServicio());
                 c.setFechaHora(cita.getFechaHora());
                 c.setEstado(cita.getEstado());
+                c.setEspecialistaAsignado(cita.getEspecialistaAsignado());
             });
         }
         return cita;
